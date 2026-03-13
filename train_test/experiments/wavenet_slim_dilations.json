@@ -1,0 +1,33 @@
+{
+    "_notes": "1-layer WaveNet, 16ch, Tanh, using the slimmable dilation pattern [1,5,29,97,227] x2. Isolates dilation pattern effect vs wavenet_1layer_tanh.",
+    "net": {
+        "name": "WaveNet",
+        "config": {
+            "layers_configs": [
+                {
+                    "condition_size": 1,
+                    "input_size": 1,
+                    "channels": 16,
+                    "head_size": 1,
+                    "kernel_size": 3,
+                    "dilations": [
+                        1, 5, 29, 97, 227,
+                        1, 5, 29, 97, 227
+                    ],
+                    "activation": "Tanh",
+                    "head_bias": true
+                }
+            ],
+            "head_scale": 0.02
+        }
+    },
+    "optimizer": {
+        "lr": 0.004
+    },
+    "lr_scheduler": {
+        "class": "ExponentialLR",
+        "kwargs": {
+            "gamma": 0.993
+        }
+    }
+}

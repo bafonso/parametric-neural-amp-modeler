@@ -1,0 +1,42 @@
+{
+    "_notes": "Slimmable WaveNet: 1-layer, 12ch (slimmable to 3ch), LeakyReLU, kernel_size=6, dilation pattern [1,5,29,97,227]x3. Primary comparison target.",
+    "net": {
+        "name": "WaveNet",
+        "config": {
+            "layers_configs": [
+                {
+                    "condition_size": 1,
+                    "input_size": 1,
+                    "channels": 12,
+                    "head_size": 1,
+                    "kernel_size": 6,
+                    "dilations": [
+                        1, 5, 29, 97, 227,
+                        1, 5, 29, 97, 227,
+                        1, 5, 29, 97, 227
+                    ],
+                    "activation": "LeakyReLU",
+                    "head_bias": true,
+                    "slimmable": {
+                        "method": "slice_channels_uniform",
+                        "kwargs": {
+                            "allowed_channels": [3, 12],
+                            "boosting": true,
+                            "init_strategy": "smallest_and_zeros"
+                        }
+                    }
+                }
+            ],
+            "head_scale": 0.01
+        }
+    },
+    "optimizer": {
+        "lr": 0.004
+    },
+    "lr_scheduler": {
+        "class": "ExponentialLR",
+        "kwargs": {
+            "gamma": 0.993
+        }
+    }
+}
