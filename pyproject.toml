@@ -26,6 +26,10 @@ dependencies = [
     "transformers>=4",
     "tqdm",
     "wavio>=0.0.5",
+    "pytest>=9.0.2",
+    "onnx>=1.20.1",
+    "onnxscript>=0.6.2",
+    "torchviz>=0.0.3",
 ]
 dynamic = ["version"]
 
