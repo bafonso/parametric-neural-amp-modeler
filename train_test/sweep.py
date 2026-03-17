@@ -262,7 +262,7 @@ def run_experiment(
     epochs: int,
 ) -> float:
     """Train one experiment. Returns wall-clock duration in seconds."""
-    exp_dir = output_dir / name
+    exp_dir = output_dir / f"{name}_ep{epochs}"
     exp_dir.mkdir(parents=True, exist_ok=True)
 
     lc = copy.deepcopy(learning_config)
@@ -389,7 +389,7 @@ def main():
     all_results: List[dict] = []
 
     for name, model_config in experiments.items():
-        exp_dir = output_dir / name
+        exp_dir = output_dir / f"{name}_ep{args.epochs}"
         print(f"\n{'='*60}")
         print(f"  Experiment: {name}")
         print(f"{'='*60}")
