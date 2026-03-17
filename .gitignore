@@ -139,3 +139,9 @@ nam/train/gui/_resources/settings.json
 
 # Resources downloaded into tests/
 tests/resources/*.reapeaks
+
+# Additional ignores
+train_test/output_gui/
+train_test/sweep_output/
+train_test/output/
+
